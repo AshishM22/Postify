@@ -1,21 +1,14 @@
 import { useParams, Link , useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { useContext } from 'react';
+import  DataContext  from './context/DataContext';
 
-const PostPage = ({ posts ,baseUrl ,setPosts }) => {
-    const { id } = useParams();
-    const post = posts.find(post => (post.id).toString() === id);
-    const navigate = useNavigate();
-    
-    const handleDelete = async (id) => {
-       try{
-            await axios.delete(`${baseUrl}/${id}`)
-            const postsList = posts.filter(post => post.id !== id);
-                setPosts(postsList);
-                navigate('/');
-        }
-        catch(err){  console.log(err)  }    
-          }
-   
+
+const PostPage = () => {
+       const { posts ,handleDelete } = useContext(DataContext);
+       const { id } = useParams();
+       const post = posts.find(post => (post.id).toString() === id);
+       const navigate = useNavigate();
 
     return (
         <main className="PostPage">
