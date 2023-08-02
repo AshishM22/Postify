@@ -1,11 +1,8 @@
 import Post from './Post';
-import { useContext } from 'react';
-import DataContext from './context/DataContext';
 
 
-const Feed = () => {
-    const { searchResults} = useContext(DataContext);
-  
+const Feed = ({ searchResults}) => {
+ 
     return (
         <>
             {searchResults.map(post => (
@@ -15,4 +12,4 @@ const Feed = () => {
     )
 }
 
-export default Feed
+export default Feed;
